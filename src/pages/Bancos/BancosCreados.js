@@ -1,48 +1,49 @@
 import axios from "axios";
-import { Container, Card, Row, Col, Table, InputGroup, Form } from "react-bootstrap"
-import React, { useEffect, useState } from "react";
-import { SUCURSALESCREADAS_GET_ENDPOINT } from "../../connections/helpers/endpoints";
-import { ListaSucursal } from "../../components/sucursales/ListaSucursales";
-import { CrearSucursal } from "./CrearSucursal";
+import { useEffect, useState } from "react"
+import { BANCOSCREADOS_GET_ENDPOINT} from "../../connections/helpers/endpoints";
+import { Card, Container, Row, Col, Form, Table, InputGroup } from "react-bootstrap";
+import { BancosTable } from "../../components/bancos/ListaBancos";
+import { CrearBancos } from "./CrearBancos";
 
-const SucursalesCreadas=()=>{
 
-    const [sucursales, setSucursales] = useState([])
+const BancosCreados=()=>{
+
+    const [bancos, setBancos] = useState([])
     const [buscando, setBuscando] = useState(true)
     const [search, setSearch] = useState('');
     const [cantidadRegistros, setCantidadRegistros] = useState(5);
 
     useEffect(()=>{
-        axios.get(SUCURSALESCREADAS_GET_ENDPOINT)
+        axios.get(BANCOSCREADOS_GET_ENDPOINT)
         .then(respuesta=>{
-            setSucursales(respuesta.data)
+            setBancos(respuesta.data)
             setBuscando(false)
         }).catch(e=>{
             console.error(e)
             setBuscando(false)
         })
-    },[sucursales, cantidadRegistros, search])
+    },[bancos, cantidadRegistros, search])
 
     const handleCantidadRegistrosChange = (event) => {
         const value = event.target.value;
-        setCantidadRegistros(value); 
+        setCantidadRegistros(value); // Asegúrate de que `cantidadRegistros` sea un número
     };
 
-    return (
-        <Container className="mb-3 ">
-            <Row className="justify-content ">
+    return(
+        <Container className="mt-3 mb-3" >
+            <Row>
                 <Col sm={12} md={8} lg={6}>
-                    <h2 className="margen-title"><strong>SUCURSALES</strong></h2>
-                    <Card className="card-especialidad mt-2 mb-3">
-                        <Card.Header className="d-flex justify-content-between align-items-center">
-                            <Card.Title className="mt-2">
-                            <h4>Lista de sucursales</h4>
-                            </Card.Title>
-                            <div className="ms-auto">
-                                <CrearSucursal />
-                            </div>
-                        </Card.Header>
-                        <Card.Body>
+                <h2 className="margen-title"><strong>BANCOS REGISTRADOS</strong></h2>
+                <Card className="card-especialidad mt-3 mb-3">
+                    <Card.Header className="d-flex justify-content-between align-items-center">
+                        <Card.Title className="mt-2">
+                            <h4>Lista de bancos</h4>
+                        </Card.Title>
+                        <div className="ms-auto">
+                            <CrearBancos />
+                        </div>
+                    </Card.Header>
+                    <Card.Body>
                             <div className="d-flex justify-content-between align-items-center">                            
                             <div style={{ display: 'flex', alignItems: 'center' }}>
                                 <span>Mostrando </span>
@@ -61,57 +62,59 @@ const SucursalesCreadas=()=>{
                             <InputGroup className='my-3' style={{ display: 'flex', alignItems: 'center' }}>
                             Buscar: 
                                 <Form.Control                            
-                                onChange={(e) => setSearch(e.target.value)}                                
+                                onChange={(e) => setSearch(e.target.value)}
                                 style={{                                                                                                          
                                     borderRadius: '8px',       
                                 }}
                                 />
                             </InputGroup>
                             </div>                                        
-                            {buscando ? "Cargando..." : (sucursales.length===0 && "No hay sucursales registradas")}
+                            {buscando ? "Cargando..." : (bancos.length===0 && "No hay PUC registrados")}
                             <Table striped bordered hover className="mt-3 mb-3 table-success" >
                                 <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Sucursal</th>
-                                    <th>Acción</th>
+                                    <th>Codigo del banco</th>
+                                    <th>Nombre</th>
+                                    <th>Numero de cuenta</th>
+                                    <th>Accion</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {sucursales
+                                {bancos
                                 .filter((item, index) => {
                                     if (cantidadRegistros === "all") {
                                       return true; // Mostrar todos los registros
                                     } else {
-                                      return search.toLowerCase() === ''
+                                    return search.toLowerCase() === ''
                                         ? index < cantidadRegistros
                                         : item.nombre.toLowerCase().includes(search);
                                     }
                                 })
-                                .map((sucursal, index) => (
-                                    <ListaSucursal key={sucursal.idSucursal} sucursal={sucursal} contador={index + 1} />
+                                .map((banco, index) => (
+                                    <BancosTable key={banco.codigo} bancos={banco} contador={index + 1} />
                                 ))}
                                 </tbody>
                             </Table>
                             </Card.Body>
                             <Card.Footer>
-                            <div className="d-flex justify-content-between align-items-center">
-                                <h5>Mostrando {cantidadRegistros} de {sucursales.length} registros</h5>
-                                <div>
-                                    <button /* onClick={prevHandler} */>
+                        <div className="d-flex justify-content-between align-items-center">
+                        <h5>Mostrando {cantidadRegistros} de {bancos.length} registros</h5>
+                            <div>
+                                <button>
                                     Anterior
-                                    </button>
-                                    <button /* onClick={nextHandler} */>
+                                </button>
+                                <button>
                                     Siguiente
-                                    </button>
-                                </div>
+                                </button>
                             </div>
-                            </Card.Footer>               
-                    </Card>
+                        </div>
+                    </Card.Footer> 
+                </Card>
                 </Col>
             </Row>
         </Container>
     )
 }
 
-export {SucursalesCreadas}
+export { BancosCreados }

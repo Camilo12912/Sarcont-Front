@@ -12,7 +12,7 @@ function SucursalForm({errores, callback, eNombre=""}) {
 
     return (
 
-        <Form onSubmit={handleSubmit} id="sucursal-form">
+        <Form onSubmit={handleSubmit} id="sucursales-form">
         <Form.Group controlId="nombre">
             <Form.Label>Nombre de la Sucursal</Form.Label>
             <Form.Control

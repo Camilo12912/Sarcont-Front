@@ -4,8 +4,35 @@ import Col from 'react-bootstrap/Col';
 import Image from 'react-bootstrap/Image';
 import Row from 'react-bootstrap/Row';
 import SarcontLogo4 from "../assets/img/SarcontLogo4.png"
+import { useState } from "react"; 
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { autenticacion } from "../connections/usuarioAcciones";
+import Swal from "sweetalert2";
 
-function SignIn ({onSignIn}) {
+function SignIn () {
+
+    const [errores, setErrores]= useState({});
+    const navegar=useNavigate();
+    const enviarAccion= useDispatch();
+
+    const login = ({username, password})=>{
+
+        const error={};
+        setErrores(error);
+
+        enviarAccion(autenticacion({username, password}))
+        .then(respuesta =>{
+            navegar("/Sucursales")
+        })
+        .catch(err=>{        
+            Swal.fire({
+                title: "Error",
+                text: "No se ha podido iniciar sesion",
+                icon: "error"
+              });            
+        })
+    }
 
     return(
         <Card className="loginCard border-dark text-white">
@@ -16,7 +43,7 @@ function SignIn ({onSignIn}) {
             <Col xs={6} md={5} xl={5}>
             <Card.Body>
                 <h1 style={{textAlign: "center", marginBottom:"2rem"}} >LOGIN</h1><br/>
-                <SignInForm onSignIn={onSignIn} />
+                <SignInForm errores={errores} callback={login} />
             </Card.Body>
             </Col>
         </Row>

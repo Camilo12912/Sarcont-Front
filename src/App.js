@@ -5,40 +5,37 @@ import { Navegacion } from './layouts/navegacion';
 import { SignIn } from './pages/Login.js';
 import { Footer } from './layouts/footer';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { RegistrarTercero } from './pages/RegistrarTercero.js';
-import { RegistrarArticulo } from './pages/RegistrarArticulo.js';
 import { SucursalesCreadas } from './pages/Sucursales/SucursalesCreadas.js';
 import { getAutenticacionToken } from './connections/helpers/token.js';
+import { TercerosCreados } from './pages/Terceros/TercerosCreados.js';
+import { ArticulosCreados } from './pages/Articulos/ArticulosCreados.js';
+import { PucCreados } from './pages/PUC/MostrarPuc.js';
+import { BancosCreados } from './pages/Bancos/BancosCreados.js';
+import { Provider } from 'react-redux';
+import { store } from './status/store.js';
+
+getAutenticacionToken()
 
 function App() {
 
-  const [recordatorio, setRecordatorio] = useState([]);
-  const [alumnos, setAlumnos] = useState([]);
-  const [loggedIn, setLoggedIn] = useState(false);
-
-  const handleSignIn = () => {
-    setLoggedIn(true);
-  };
-
-  const handleSignOut = () => {
-    setLoggedIn(false);
-  };
-  getAutenticacionToken()
 
   return (
     <div>
+          <Provider store={store}>
       <BrowserRouter>
-        <Navegacion loggedIn={loggedIn} onSignOut={handleSignOut} />
+        <Navegacion />
         <Routes>
-          <Route path='/' element={<SignIn onSignIn={handleSignIn}/>} />
+          <Route path='/' element={<SignIn />} />
           <Route path='/Sucursales' element={<SucursalesCreadas/>}/>
-          <Route path="/RegistrarTercero" element={<RegistrarTercero alumnos={alumnos} setAlumnos={setAlumnos} />} />
-          <Route path="/RegistrarArticulo" element={<RegistrarArticulo alumnos={alumnos} setAlumnos={setAlumnos} />} />
- 
+          <Route path='/Clientes' element={<TercerosCreados/>}/>
+          <Route path='/Articulos' element={<ArticulosCreados/>}/>
+          <Route path='/puc' element={<PucCreados/>}/>
+          <Route path='/Bancos' element={<BancosCreados/>}/>
 
         </Routes>
       </BrowserRouter>
       <Footer/>
+      </Provider>
     </div>
   );
 }

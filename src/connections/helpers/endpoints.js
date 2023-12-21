@@ -9,32 +9,27 @@ export const SUCURSALESDETALLE_GET_ENDPOINT = API_URL+"/sucursales";
 export const ACTUALIZARSUCURSAL_PUT_ENDPOINT = API_URL+"/sucursales";
 export const ELIMINARSUCURSAL_DELETE_ENDPOINT = API_URL+"/sucursales";
 
-export const CREARINSTITUCION_POST_ENDPOINT = API_URL+"/institucion";
-export const INSTITUCIONESCREADAS_GET_ENDPOINT = API_URL+"/institucion";
-export const INSTITUCIONDETALLE_GET_ENDPOINT = API_URL+"/institucion";
-export const ACTUALIZARINSTITUCION_PUT_ENDPOINT = API_URL+"/institucion";
-export const ELIMINARINSTITUCION_DELETE_ENDPOINT = API_URL+"/institucion";
-export const BUSCARINSTITUCIONPORESPECIALIDAD_GET_ENDPOINT = API_URL+"/institucion/especialidad"
+export const CREARCLIENTES_POST_ENDPOINT = API_URL+"/clientes";
+export const CLIENTESCREADOS_GET_ENDPOINT = API_URL+"/clientes";
+export const CLIENTEDETALLE_GET_ENDPOINT = API_URL+"/clientes";
+export const ACTUALIZARCLIENTE_PUT_ENDPOINT = API_URL+"/clientes";
+export const ELIMINARCLIENTE_DELETE_ENDPOINT = API_URL+"/clientes";
 
-export const CREARCONVENIO_POST_ENDPOINT = API_URL+"/convenio";
-export const CONVENIOSCREADOS_GET_ENDPOINT = API_URL+"/convenio";
-export const CONVENIODETALLE_GET_ENDPOINT = API_URL+"/convenio";
-export const ACTUALIZARCONVENIO_PUT_ENDPOINT = API_URL+"/convenio";
-export const ELIMINARCONVENIO_DELETE_ENDPOINT = API_URL+"/convenio";
-export const BUSCARCONVENIOPORINSTITUCION = API_URL+"/convenio/institucion";
 
-export const CREARSUSCRIPCION_POST_ENDPOINT = API_URL+"/suscripcion";
-export const SUSCRIPCIONESCREADAS_GET_ENDPOINT = API_URL+"/suscripcion";
-export const SUSCRIPCIONDETALLE_GET_ENDPOINT = API_URL+"/suscripcion";
-export const ACTUALIZARSUSCRIPCION_PUT_ENDPOINT = API_URL+"/suscripcion";
-export const ELIMINARSUSCRIPCION_DELETE_ENDPOINT = API_URL+"/suscripcion";
-export const BUSCARSUSCRIPCIONPORCONTRATO_GET_ENDPOINT =  API_URL+"/suscripcion/contrato";
+export const CREARARTICULO_POST_ENDPOINT = API_URL+"/articulos";
+export const ARTICULOSCREADOS_GET_ENDPOINT = API_URL+"/articulos";
+export const ARTICULODETALLE_GET_ENDPOINT = API_URL+"/articulos";
+export const ACTUALIZARARTICULO_PUT_ENDPOINT = API_URL+"/articulos";
+export const ELIMINARARTICULO_DELETE_ENDPOINT = API_URL+"/articulos";
 
-export const CREARSUSCRIPTOR_POST_ENDPOINT = API_URL+"/suscriptor";
-export const SUSCRIPTORESCREADAS_GET_ENDPOINT = API_URL+"/suscriptor";
-export const SUSCRIPTORDETALLE_GET_ENDPOINT = API_URL+"/suscriptor";
-export const ACTUALIZARSUSCRIPTOR_PUT_ENDPOINT = API_URL+"/suscriptor";
-export const ELIMINARSUSCRIPTOR_DELETE_ENDPOINT = API_URL+"/suscriptor";
+export const PUCCREADOS_GET_ENDPOINT = API_URL+"/puc";
+export const BUSCARPUCPORCODIGO_GET_ENDPOINT =  API_URL+"/puc";
+
+export const CREARBANCOS_POST_ENDPOINT = API_URL+"/bancos";
+export const BANCOSCREADOS_GET_ENDPOINT = API_URL+"/bancos";
+export const BANCODETALLE_GET_ENDPOINT = API_URL+"/bancos";
+export const ACTUALIZARBANCO_PUT_ENDPOINT = API_URL+"/bancos";
+export const ELIMINARBANCO_DELETE_ENDPOINT = API_URL+"/bancos";
 
 export const CREARCITA_POST_ENDPOINT = API_URL+"/cita";
 export const CITASCREADAS_GET_ENDPOINT = API_URL+"/cita";
@@ -48,4 +43,4 @@ export const ROLDETALLE_GET_ENDPOINT = API_URL+"/rol";
 export const ACTUALIZARROL_PUT_ENDPOINT = API_URL+"/rol";
 export const ELIMINARROL_DELETE_ENDPOINT = API_URL+"/rol";
 
-export const USUARIOSCREADOS_GET_ENDPOINT = API_URL+"/usuario/rol";
+export const USUARIOSCREADOS_GET_ENDPOINT = API_URL+"/usuario";

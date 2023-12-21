@@ -1,30 +1,29 @@
 import { useState } from "react";
-import {CREARSUCURSAL_POST_ENDPOINT } from "../../connections/helpers/endpoints";
+import {CREARBANCOS_POST_ENDPOINT } from "../../connections/helpers/endpoints";
 import { Modal, Container, Button } from "react-bootstrap";
 import { BsPlusSquareFill } from "react-icons/bs";
 import Swal from "sweetalert2";
 import axios from "axios";
-import { SucursalForm } from "../../components/sucursales/CrearSucursalForm";
+import { BancosForm } from "../../components/bancos/CrearBancos";
 
 
-function CrearSucursal() {
+function CrearBancos() {
 
     const [errores, setErrores]= useState({});    
     const [showModal, setShowModal] = useState(false);
 
     const mostrarAlerta=()=>{
         Swal.fire(
-        'Éxito',
-        'La Sucursal se creó correctamente',
+        'el Banco se creó correctamente',
         'success')
     }
 
-    const crear= async ({nombre})=>{
+    const crear= async ({nombre, codigoBanco, numeroCuenta})=>{
     
         const errores={};
         setErrores(errores);
 
-        axios.post(CREARSUCURSAL_POST_ENDPOINT, {nombre}
+        axios.post(CREARBANCOS_POST_ENDPOINT, {nombre, codigoBanco, numeroCuenta}
             ).then((response) => {
                 handleCloseModal();
                 mostrarAlerta();                                                
@@ -45,17 +44,17 @@ function CrearSucursal() {
     return (
         <Container>
             <Button variant="success"  onClick={handleShowModal}>
-                <BsPlusSquareFill/> Crear Sucursal
+                <BsPlusSquareFill/> Crear Banco
             </Button>
             <Modal backdrop="static" show={showModal} onHide={handleCloseModal}>
                 <Modal.Header closeButton>
-                <Modal.Title>Crear Sucursal</Modal.Title>
+                <Modal.Title>Crear Banco</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                <SucursalForm errores={errores} callback={crear} />
+                <BancosForm errores={errores} callback={crear} />
                 </Modal.Body>
                 <Modal.Footer>
-                <Button variant="primary" type="submit" form="sucursales-form">
+                <Button variant="primary" type="submit" form="bancos-form">
                     Crear
                 </Button>
                 <Button variant="secondary" onClick={handleCloseModal}>
@@ -67,4 +66,4 @@ function CrearSucursal() {
     )
 }
 
-export {CrearSucursal}
+export {CrearBancos}

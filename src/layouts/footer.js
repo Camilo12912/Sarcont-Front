@@ -1,6 +1,6 @@
 import { Container, Row, Col } from 'react-bootstrap';
 import { Divisor } from "../components/divisor"
-import sarcont from "../assets/img/fundacion.png"
+// import sarcont from "../assets/img/fundacion.png"
 
 function Footer () {
   return (
@@ -9,7 +9,7 @@ function Footer () {
         <Row>
           <Col md={4}>
             <div className="footer-logo">
-              <img src={sarcont} alt="fesc Logo" />
+              {/* <img src={sarcont} alt="fesc Logo" /> */}
             </div>
           </Col>
           <Col md={4}>

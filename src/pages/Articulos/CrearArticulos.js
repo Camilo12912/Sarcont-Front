@@ -1,13 +1,14 @@
 import { useState } from "react";
-import {CREARSUCURSAL_POST_ENDPOINT } from "../../connections/helpers/endpoints";
-import { Modal, Container, Button } from "react-bootstrap";
+import {CREARARTICULO_POST_ENDPOINT, CREARSUCURSAL_POST_ENDPOINT } from "../../connections/helpers/endpoints";
+import { Button, Container, Modal } from "react-bootstrap";
 import { BsPlusSquareFill } from "react-icons/bs";
 import Swal from "sweetalert2";
 import axios from "axios";
 import { SucursalForm } from "../../components/sucursales/CrearSucursalForm";
+import { CrearArticuloForm } from "../../components/articulos/CrearArticulo";
 
 
-function CrearSucursal() {
+function CrearArticulo() {
 
     const [errores, setErrores]= useState({});    
     const [showModal, setShowModal] = useState(false);
@@ -15,16 +16,16 @@ function CrearSucursal() {
     const mostrarAlerta=()=>{
         Swal.fire(
         'Éxito',
-        'La Sucursal se creó correctamente',
+        'El articulo se creó correctamente',
         'success')
     }
 
-    const crear= async ({nombre})=>{
+    const crear= async ({idSucursal,idUsuario, nombre, tarifa, codigo})=>{
     
         const errores={};
         setErrores(errores);
 
-        axios.post(CREARSUCURSAL_POST_ENDPOINT, {nombre}
+        axios.post(CREARARTICULO_POST_ENDPOINT, {idSucursal,idUsuario, nombre, tarifa, codigo}
             ).then((response) => {
                 handleCloseModal();
                 mostrarAlerta();                                                
@@ -45,17 +46,17 @@ function CrearSucursal() {
     return (
         <Container>
             <Button variant="success"  onClick={handleShowModal}>
-                <BsPlusSquareFill/> Crear Sucursal
+                <BsPlusSquareFill/> Crear Articulo
             </Button>
             <Modal backdrop="static" show={showModal} onHide={handleCloseModal}>
                 <Modal.Header closeButton>
-                <Modal.Title>Crear Sucursal</Modal.Title>
+                <Modal.Title>Registrar Articulo</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                <SucursalForm errores={errores} callback={crear} />
+                <CrearArticuloForm errores={errores} callback={crear} />
                 </Modal.Body>
                 <Modal.Footer>
-                <Button variant="primary" type="submit" form="sucursales-form">
+                <Button variant="primary" type="submit" form="articulo-form">
                     Crear
                 </Button>
                 <Button variant="secondary" onClick={handleCloseModal}>
@@ -67,4 +68,4 @@ function CrearSucursal() {
     )
 }
 
-export {CrearSucursal}
+export {CrearArticulo}

@@ -1,13 +1,13 @@
 import { useState } from "react";
-import {CREARSUCURSAL_POST_ENDPOINT } from "../../connections/helpers/endpoints";
+import { CrearTerceroForm } from "../../components/terceros/CrearTerceros";
+import { CREARCLIENTES_POST_ENDPOINT } from "../../connections/helpers/endpoints";
 import { Modal, Container, Button } from "react-bootstrap";
 import { BsPlusSquareFill } from "react-icons/bs";
 import Swal from "sweetalert2";
 import axios from "axios";
-import { SucursalForm } from "../../components/sucursales/CrearSucursalForm";
 
 
-function CrearSucursal() {
+function CrearTercero() {
 
     const [errores, setErrores]= useState({});    
     const [showModal, setShowModal] = useState(false);
@@ -15,19 +15,19 @@ function CrearSucursal() {
     const mostrarAlerta=()=>{
         Swal.fire(
         'Éxito',
-        'La Sucursal se creó correctamente',
+        'el tercero se registro correctamente',
         'success')
     }
 
-    const crear= async ({nombre})=>{
-    
+    const crear= async ({idSucursal,idUsuario, documento, nombre, apellido, nombreTributario, telefono, tipo, tipoDocumento, email, direccion, ciudad, tipoTercero})=>{
+
         const errores={};
         setErrores(errores);
 
-        axios.post(CREARSUCURSAL_POST_ENDPOINT, {nombre}
-            ).then((response) => {
-                handleCloseModal();
-                mostrarAlerta();                                                
+        axios.post(CREARCLIENTES_POST_ENDPOINT, {idSucursal, idUsuario, documento, nombre, apellido, nombreTributario, telefono, tipo, email, direccion, tipoDocumento, ciudad, tipoTercero}
+        ).then((response)=>{
+            handleCloseModal();
+            mostrarAlerta();
         })
         .catch((error)=>{
             setErrores({new: error.response.data.message});
@@ -36,26 +36,26 @@ function CrearSucursal() {
 
     const handleCloseModal = () => {
         setShowModal(false);
-      };
+        };
     
     const handleShowModal = () => {
         setShowModal(true);
-      };
+        };
 
     return (
         <Container>
-            <Button variant="success"  onClick={handleShowModal}>
-                <BsPlusSquareFill/> Crear Sucursal
+            <Button variant="success" onClick={handleShowModal}>
+                <BsPlusSquareFill/> Registrar Tercero
             </Button>
-            <Modal backdrop="static" show={showModal} onHide={handleCloseModal}>
+            <Modal className="mi-modal-form" backdrop="static" size="lg" show={showModal} onHide={handleCloseModal}>
                 <Modal.Header closeButton>
-                <Modal.Title>Crear Sucursal</Modal.Title>
+                <Modal.Title>Datos del tercero</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                <SucursalForm errores={errores} callback={crear} />
+                <CrearTerceroForm errores={errores} callback={crear} />
                 </Modal.Body>
                 <Modal.Footer>
-                <Button variant="primary" type="submit" form="sucursales-form">
+                <Button variant="primary" type="submit" form="clientes-form">
                     Crear
                 </Button>
                 <Button variant="secondary" onClick={handleCloseModal}>
@@ -67,4 +67,4 @@ function CrearSucursal() {
     )
 }
 
-export {CrearSucursal}
+export { CrearTercero }
