@@ -79,7 +79,7 @@ function EditarBanco({id}) {
                 )}
                 </Modal.Body>
                 <Modal.Footer>
-                <Button variant="primary" type="submit" form="banco-form">
+                <Button variant="primary" type="submit" form="bancos-form">
                     Guardar Cambios
                 </Button>
                 <Button variant="secondary" onClick={handleCloseModal}>

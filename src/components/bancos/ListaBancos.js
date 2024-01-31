@@ -2,8 +2,9 @@
 // import { EliminarConvenioBoton } from "./EliminarConvenioBoton"
 // import { EditarConvenio } from "../../pages/convenios/EditarConvenio"
 
-import { EditarBanco } from "../../pages/Bancos/EditarBancos"
-import { EliminarBancosBoton } from "./EliminarBancos"
+import {EditarBanco} from "../../pages/Bancos/EditarBanco.js"
+import { EliminarBancosBoton } from "./EliminarBancos.js"
+
 
 const BancosTable=({bancos, contador})=>{
     

@@ -49,7 +49,6 @@ function Navegacion({ }) {
                 <NavDropdown.Item as={NavLink} to="/Clientes">Terceros</NavDropdown.Item>
                 <NavDropdown.Item as={NavLink} to="/Articulos">Articulos</NavDropdown.Item>
                 <NavDropdown.Item as={NavLink} to="/Bancos">Bancos</NavDropdown.Item>
-                <NavDropdown.Item as={NavLink} to="/RegistrarGContables">Grupos Contables</NavDropdown.Item>
                 <NavDropdown.Item as={NavLink} to="/Puc">Plan Unico De Cuentas</NavDropdown.Item>
               </NavDropdown>
                     <NavDropdown className='mb-2' style={{ fontSize: '18px' }} title={<span><MdReport /> Reportes</span>} id={`offcanvasNavbarDropdown-expand-${expand}`}>
