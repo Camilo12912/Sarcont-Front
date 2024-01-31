@@ -5,7 +5,7 @@ import { ACTUALIZARBANCO_PUT_ENDPOINT, BANCODETALLE_GET_ENDPOINT } from "../../c
 import { Container, Button, Modal } from "react-bootstrap";
 import { TiEdit } from "react-icons/ti";
 import Swal from "sweetalert2";
-import { CrearArticuloForm } from "../../components/articulos/CrearArticulo";
+import { BancosForm } from "../../components/bancos/CrearBancos";
 
 
 function EditarBanco({id}) {    
@@ -69,13 +69,13 @@ function EditarBanco({id}) {
                 </Modal.Header>
                 <Modal.Body>
                 {banco && (                    
-                    <CrearArticuloForm 
+                    <BancosForm 
                     errores={errores}
                     callback={editar}
                     eNombre={banco.nombre}
                     eCodigo={banco.codigoBanco}
                     eNumeroCuenta={banco.numeroCuenta}                                      
-                    ></CrearArticuloForm>
+                    ></BancosForm>
                 )}
                 </Modal.Body>
                 <Modal.Footer>
