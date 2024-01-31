@@ -2,10 +2,11 @@
 // import { EliminarConvenioBoton } from "./EliminarConvenioBoton"
 // import { EditarConvenio } from "../../pages/convenios/EditarConvenio"
 
+import { EditarBanco } from "../../pages/Bancos/EditarBancos"
 import { EliminarBancosBoton } from "./EliminarBancos"
 
 const BancosTable=({bancos, contador})=>{
-    console.log(bancos)
+    
     return(
         <tr>
         <td>{contador}</td>
@@ -19,9 +20,9 @@ const BancosTable=({bancos, contador})=>{
         {/* <td>{moment(convenio.fechaRegistro).format('D[/]MM[/]YYYY')}</td> */}
         <td className="botones-td">
           <EliminarBancosBoton id={bancos.idBanco}
-        /></td>        
-      </tr>
+        />
+        <EditarBanco id={bancos.idBanco} /></td> 
+        </tr>       
     )
 }
-
-export { BancosTable }
+export {BancosTable}

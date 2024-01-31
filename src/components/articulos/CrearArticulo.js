@@ -86,7 +86,7 @@ function CrearArticuloForm({errores, callback, tselectedSucursal="",tselectedUsu
             value={selectedSucursal}
             onChange={(e) => setSelectedSucursal(e.target.value)} // Maneja el cambio de selección
             >
-            <option value="">Seleccione una sucursal</option>
+            <option value=''>Seleccione una sucursal</option>
             {sucursales.map((sucursal)=> (
                 <option key={sucursal.idSucursal} value={sucursal.idSucursal}>                
                 {sucursal.nombre}
